@@ -71,7 +71,8 @@ export default function GameScreen({
       <div className="flex items-center justify-between px-4 pt-4 pb-2">
         <button
           onClick={onBack}
-          className="text-white/50 hover:text-white text-sm font-semibold transition-colors select-none px-2 py-1"
+          style={{ backgroundColor: "transparent", color: "#fff" }}
+          className="text-sm font-semibold transition-colors select-none px-2 py-1"
         >
           ← Back
         </button>
@@ -89,7 +90,8 @@ export default function GameScreen({
 
         <button
           onClick={onRestart}
-          className="text-white/50 hover:text-white text-sm font-semibold transition-colors select-none px-2 py-1"
+          style={{ backgroundColor: "transparent", color: "#fff" }}
+          className="text-sm font-semibold transition-colors select-none px-2 py-1"
         >
           🔄 Restart
         </button>
@@ -99,8 +101,8 @@ export default function GameScreen({
       <div className="px-4 pb-3 flex flex-col items-center gap-2">
         <button
           onClick={() => setWeaponPickerOpen((x) => !x)}
-          className="bg-black/40 backdrop-blur-sm rounded-full px-5 py-2 border border-white/10
-                     text-white font-semibold text-sm hover:bg-black/60 transition-all select-none"
+          style={{ backgroundColor: "#111827", color: "#fff" }}
+          className="rounded-full px-5 py-2 border border-white/10 font-semibold text-sm transition-all select-none"
         >
           {weaponData.emoji} {weaponData.name}
           <span className="text-white/40 ml-2 text-xs">tap to swap</span>
@@ -115,11 +117,16 @@ export default function GameScreen({
                   setCurrentWeapon(w.id);
                   setWeaponPickerOpen(false);
                 }}
+                style={{
+                  backgroundColor:
+                    w.id === currentWeapon ? "#f97316" : "#1f2937",
+                  color: "#fff",
+                }}
                 className={[
                   "px-3 py-1.5 rounded-full text-sm font-bold transition-all select-none",
                   w.id === currentWeapon
-                    ? "bg-orange-500 text-white scale-105 ring-2 ring-orange-300"
-                    : "bg-white/10 text-white hover:bg-white/25",
+                    ? "scale-105 ring-2 ring-orange-300"
+                    : "",
                 ].join(" ")}
               >
                 {w.emoji} {w.name}
@@ -211,12 +218,16 @@ export default function GameScreen({
               <button
                 onClick={() => throwAt(player.id)}
                 disabled={isAnyAnimating}
+                style={{
+                  backgroundColor: isAnyAnimating ? "#1f2937" : "#ef4444",
+                  color: isAnyAnimating ? "rgba(255,255,255,0.3)" : "#fff",
+                }}
                 className={[
-                  "px-5 py-3 text-white font-black rounded-xl text-sm transition-all duration-150 select-none",
+                  "px-5 py-3 font-black rounded-xl text-sm transition-all duration-150 select-none",
                   "shadow-lg active:scale-95",
                   isAnyAnimating
-                    ? "bg-white/10 cursor-not-allowed text-white/30"
-                    : "bg-linear-to-r from-red-500 to-orange-500 hover:from-red-400 hover:to-orange-400 hover:scale-105 shadow-red-800/40",
+                    ? "cursor-not-allowed"
+                    : "hover:scale-105 shadow-red-800/40",
                 ].join(" ")}
               >
                 {weaponData.emoji} THROW!

@@ -9,6 +9,7 @@ export default function WeaponSelectScreen({ onSelect, onBack }) {
       <div className="w-full max-w-lg flex items-center mb-2">
         <button
           onClick={onBack}
+          style={{ backgroundColor: "transparent", color: "#fff" }}
           className="text-white/50 hover:text-white text-sm font-semibold transition-colors select-none px-2 py-1"
         >
           ← Back
@@ -33,11 +34,15 @@ export default function WeaponSelectScreen({ onSelect, onBack }) {
           <button
             key={weapon.id}
             onClick={() => setSelected(weapon.id)}
+            style={{
+              backgroundColor: selected === weapon.id ? "#f97316" : "#581c87",
+              color: "#fff",
+            }}
             className={[
               "p-4 rounded-2xl flex flex-col items-center gap-2 transition-all duration-200 select-none",
               selected === weapon.id
-                ? "bg-orange-500/80 ring-4 ring-orange-300 scale-110 shadow-xl shadow-orange-800/50"
-                : "bg-white/10 hover:bg-white/20 hover:scale-105 active:scale-95",
+                ? "ring-4 ring-orange-300 scale-110 shadow-xl shadow-orange-800/50"
+                : "hover:scale-105 active:scale-95",
             ].join(" ")}
           >
             <span className="text-5xl leading-none">{weapon.emoji}</span>
@@ -51,6 +56,7 @@ export default function WeaponSelectScreen({ onSelect, onBack }) {
 
       <button
         onClick={() => onSelect(selected)}
+        style={{ backgroundColor: "#f97316", color: "#fff" }}
         className="w-full max-w-lg py-4 bg-linear-to-r from-orange-500 to-red-600 text-white text-xl font-black
                    rounded-2xl hover:from-orange-400 hover:to-red-500 transition-all duration-200
                    hover:scale-105 active:scale-95 shadow-lg shadow-red-800/40 select-none"

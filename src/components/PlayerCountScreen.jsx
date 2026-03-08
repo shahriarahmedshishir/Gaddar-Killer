@@ -25,7 +25,10 @@ export default function PlayerCountScreen({ onSelect }) {
       </div>
 
       {/* Card */}
-      <div className="bg-black/40 backdrop-blur-sm rounded-3xl p-8 w-full max-w-sm border border-white/10 shadow-2xl">
+      <div
+        style={{ backgroundColor: "#030712", color: "#ffffff" }}
+        className="bg-gray-950 rounded-3xl p-8 w-full max-w-sm border border-white/10 shadow-2xl"
+      >
         <h2 className="text-white text-xl font-bold text-center mb-6">
           How many traitors to punish? 😤
         </h2>
@@ -35,11 +38,15 @@ export default function PlayerCountScreen({ onSelect }) {
             <button
               key={count}
               onClick={() => setSelected(count)}
+              style={{
+                backgroundColor: selected === count ? "#f97316" : "#581c87",
+                color: "#ffffff",
+              }}
               className={[
                 "aspect-square rounded-2xl text-4xl font-black transition-all duration-200 select-none",
                 selected === count
                   ? "bg-orange-500 text-white scale-110 shadow-lg ring-4 ring-orange-300"
-                  : "bg-white/10 text-white/70 hover:bg-white/20 hover:scale-105 active:scale-95",
+                  : "bg-purple-900 text-white hover:bg-purple-800 hover:scale-105 active:scale-95",
               ].join(" ")}
             >
               {count}
@@ -57,7 +64,7 @@ export default function PlayerCountScreen({ onSelect }) {
         </button>
       </div>
 
-      <p className="text-white/25 text-xs mt-6">Progress saved automatically</p>
+      <p className="text-white/50 text-xs mt-6">Progress saved automatically</p>
     </div>
   );
 }

@@ -89,7 +89,7 @@ function FaceCropModal({ imageSrc, panelId, onConfirm, onCancel }) {
           <img
             src={imageSrc}
             alt="crop"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover "
             draggable={false}
           />
           {/* SVG dim overlay with circle cut-out */}
@@ -165,13 +165,15 @@ function FaceCropModal({ imageSrc, panelId, onConfirm, onCancel }) {
         <div className="flex gap-3">
           <button
             onClick={onCancel}
-            className="flex-1 py-3 bg-white/10 text-white rounded-xl font-bold hover:bg-white/20 transition-all active:scale-95"
+            style={{ backgroundColor: "#1f2937", color: "#fff" }}
+            className="flex-1 py-3 rounded-xl font-bold transition-all active:scale-95"
           >
             Cancel
           </button>
           <button
             onClick={handleConfirm}
-            className="flex-1 py-3 bg-orange-500 text-white rounded-xl font-black hover:bg-orange-400 transition-all active:scale-95"
+            style={{ backgroundColor: "#f97316", color: "#fff" }}
+            className="flex-1 py-3 rounded-xl font-black transition-all active:scale-95"
           >
             Use This ✓
           </button>
@@ -212,8 +214,9 @@ function PlayerPanel({ config, onChange, playerId }) {
       <div className="flex flex-col md:flex-row gap-4 flex-1">
         {/* ── Preview ── */}
         <div
+          style={{ backgroundColor: "#111827" }}
           className="md:w-36 flex flex-col items-center justify-center gap-2
-                      bg-black/30 backdrop-blur-sm rounded-3xl p-4 border border-white/10 shrink-0"
+                      rounded-3xl p-4 border border-white/10 shrink-0"
         >
           <p className="text-white/40 text-xs font-semibold uppercase tracking-wider">
             Preview
@@ -230,7 +233,10 @@ function PlayerPanel({ config, onChange, playerId }) {
         {/* ── Controls ── */}
         <div className="flex-1 flex flex-col gap-3">
           {/* Gender */}
-          <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
+          <div
+            style={{ backgroundColor: "#111827" }}
+            className="rounded-2xl p-4 border border-white/10"
+          >
             <p className="text-white/50 text-xs font-semibold uppercase tracking-wider mb-3">
               Gender
             </p>
@@ -242,11 +248,16 @@ function PlayerPanel({ config, onChange, playerId }) {
                 <button
                   key={opt.value}
                   onClick={() => onChange({ gender: opt.value })}
+                  style={{
+                    backgroundColor:
+                      config.gender === opt.value ? "#f97316" : "#581c87",
+                    color: "#fff",
+                  }}
                   className={[
                     "py-3 rounded-xl text-lg font-bold transition-all duration-200 select-none",
                     config.gender === opt.value
-                      ? "bg-orange-500 text-white ring-2 ring-orange-300 scale-105 shadow-md"
-                      : "bg-white/10 text-white/70 hover:bg-white/20 hover:scale-105",
+                      ? "ring-2 ring-orange-300 scale-105 shadow-md"
+                      : "hover:scale-105",
                   ].join(" ")}
                 >
                   {opt.emoji} {opt.label}
@@ -256,7 +267,10 @@ function PlayerPanel({ config, onChange, playerId }) {
           </div>
 
           {/* Height */}
-          <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
+          <div
+            style={{ backgroundColor: "#111827" }}
+            className="rounded-2xl p-4 border border-white/10"
+          >
             <p className="text-white/50 text-xs font-semibold uppercase tracking-wider mb-1">
               Height — <span className="text-orange-300">{heightLabel}</span>
             </p>
@@ -276,7 +290,10 @@ function PlayerPanel({ config, onChange, playerId }) {
           </div>
 
           {/* Body Type */}
-          <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
+          <div
+            style={{ backgroundColor: "#111827" }}
+            className="rounded-2xl p-4 border border-white/10"
+          >
             <p className="text-white/50 text-xs font-semibold uppercase tracking-wider mb-1">
               Body Type —{" "}
               <span className="text-orange-300">{fatnessLabel}</span>
@@ -297,7 +314,10 @@ function PlayerPanel({ config, onChange, playerId }) {
           </div>
 
           {/* Face Upload */}
-          <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
+          <div
+            style={{ backgroundColor: "#111827" }}
+            className="rounded-2xl p-4 border border-white/10"
+          >
             <p className="text-white/50 text-xs font-semibold uppercase tracking-wider mb-3">
               Face Photo (optional)
             </p>
@@ -306,7 +326,7 @@ function PlayerPanel({ config, onChange, playerId }) {
               type="file"
               accept="image/*"
               onChange={handleImageUpload}
-              className="hidden"
+              className="hidden bg-black "
             />
             <div className="flex gap-3 items-center">
               {config.faceImage && (
@@ -318,16 +338,16 @@ function PlayerPanel({ config, onChange, playerId }) {
               )}
               <button
                 onClick={() => fileRef.current.click()}
-                className="flex-1 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl
-                         font-semibold transition-all text-sm active:scale-95"
+                style={{ backgroundColor: "#1f2937", color: "#fff" }}
+                className="flex-1 py-2.5 rounded-xl font-semibold transition-all text-sm active:scale-95"
               >
                 {config.faceImage ? "📸 Change Photo" : "📸 Upload a Face"}
               </button>
               {config.faceImage && (
                 <button
                   onClick={() => onChange({ faceImage: null })}
-                  className="py-2.5 px-3 bg-red-500/30 hover:bg-red-500/50 text-red-300 rounded-xl
-                           font-semibold transition-all text-sm active:scale-95"
+                  style={{ backgroundColor: "#7f1d1d", color: "#fca5a5" }}
+                  className="py-2.5 px-3 rounded-xl font-semibold transition-all text-sm active:scale-95"
                   aria-label="Remove photo"
                 >
                   ✕
@@ -381,7 +401,8 @@ export default function CharacterSetupScreen({ players, onSetupAll, onBack }) {
         {/* Back button */}
         <button
           onClick={onBack}
-          className="self-start text-white/50 hover:text-white text-sm font-semibold transition-colors select-none px-2 py-1 mb-2"
+          style={{ backgroundColor: "transparent", color: "#fff" }}
+          className="self-start text-sm font-semibold transition-colors select-none px-2 py-1 mb-2"
         >
           ← Back
         </button>
@@ -404,11 +425,15 @@ export default function CharacterSetupScreen({ players, onSetupAll, onBack }) {
               <button
                 key={i}
                 onClick={() => setActiveTab(i)}
+                style={{
+                  backgroundColor: activeTab === i ? "#f97316" : "#581c87",
+                  color: "#fff",
+                }}
                 className={[
                   "flex-1 py-2.5 rounded-xl font-black text-sm transition-all duration-200 select-none flex items-center justify-center gap-1.5",
                   activeTab === i
-                    ? "bg-orange-500 text-white ring-2 ring-orange-300 scale-105 shadow-lg"
-                    : "bg-white/10 text-white/60 hover:bg-white/20",
+                    ? "ring-2 ring-orange-300 scale-105 shadow-lg"
+                    : "",
                 ].join(" ")}
               >
                 {configs[i].faceImage ? (
@@ -442,8 +467,9 @@ export default function CharacterSetupScreen({ players, onSetupAll, onBack }) {
         {/* Done button */}
         <button
           onClick={() => onSetupAll(configs)}
-          className="mt-5 w-full py-4 bg-linear-to-r from-orange-500 to-red-600 text-white text-xl font-black
-                     rounded-2xl hover:from-orange-400 hover:to-red-500 transition-all duration-200
+          style={{ backgroundColor: "#f97316", color: "#fff" }}
+          className="mt-5 w-full py-4 bg-linear-to-r from-orange-500 to-red-600 text-xl font-black
+                     rounded-2xl transition-all duration-200
                      hover:scale-105 active:scale-95 shadow-lg shadow-red-800/40 select-none"
         >
           Choose Weapon! 🔫
